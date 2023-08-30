@@ -11,11 +11,16 @@
 `ssh-keygen -t ecdsa -b 521`
 
 此方法适用于 Win­dows 10 (1803后)的 Pow­er­Shell 或 WSL，Linux 发行版和 ma­cOS 自带的终端，但不仅限于这些环境。
+
 521 位的 ECDSA 密钥比起 RSA 密钥更安全且验证速度更快。
+
 操作完后会在 ~/.ssh 目录中生两个密钥文件，id_ecdsa 为私钥，id_ecdsa.pub 为公钥。公钥就是我们需要安装在远程主机上的,私钥自己保存好，放在电脑本地或者网盘啥的，以后和公钥进行配对验证才能登陆。
+
 ~符号代表用户主目录，俗称家目录。其路径与当前登陆的用户有关，在 Linux 中普通用户家目录的路径是/home/用户名，而 root 用户是/root。Win­dows 10 中路径是C:\Users\用户名。在 ma­cOS 中路径是/Users/用户名。自己仔细找找能找到的。
 
-## 第二步、上传你的pub公钥到你的网站根目录或者GitHub上，，如果是你的网站那么相应地址就是http://xxx.xxx/xxx.pub，GitHub的上传地址是<https://github.com/settings/keys>
+## 第二步、上传你的pub公钥到你的网站根目录或者GitHub上，
+如果是你的网站是xxx.xxx那么相应地址就是<http://xxx.xxx/xxx.pub>
+GitHub的上传地址是<https://github.com/settings/keys>
 
 ## 第三步、安装
 使用GitHub上公钥的代码，并改端口为55055，禁止使用密码登录，会自动覆盖原有的公钥证书
@@ -26,6 +31,7 @@
 
 ``bash <(curl -fsSL git.io/key.sh) -ou 存放公钥的绝对路径 -p 55055 -d``
 
+
 语法及选项说明
 bash <(curl -fsSL git.io/key.sh) [选项...] <参数>
 -o - 覆盖模式，必须写在最前面才会生效
@@ -34,3 +40,5 @@ bash <(curl -fsSL git.io/key.sh) [选项...] <参数>
 -f - 从本地文件获取公钥，参数为本地文件路径
 -p - 修改 SSH 端口，参数为端口号
 -d - 禁用密码登录
+
+有什么疑问可以联系原作者P3TERX，以上都是扣来的，谢谢。
